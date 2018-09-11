@@ -13,7 +13,6 @@ export default {
 
       try {
         const response = await location.getLocation();
-        console.log('response', response);
         const result = {
           country: response.data.country
         };

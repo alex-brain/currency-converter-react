@@ -1,0 +1,35 @@
+.CurrencyRateItem {
+  display: flex;
+
+  &:hover {
+    .CurrencyRateItem__favourite-btn {
+      display: block;
+    }
+  }
+
+  &__cell {
+    padding: 10px;
+    border-right: 1px solid #CDCDCD;
+    border-bottom: 1px solid #CDCDCD;
+    box-sizing: border-box;
+  }
+
+  &__symbol, &__rate {
+    width: 10%;
+  }
+  &__name {
+    width: 40%;
+  }
+  &__favourite-btn {
+    width: 40%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: none;
+    cursor: pointer;
+    color: #0000EE;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
