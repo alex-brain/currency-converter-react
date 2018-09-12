@@ -1,9 +1,13 @@
-import location from '../../api/location';
+import { location, countries } from '../../api';
+import { currency } from '../actions';
 
 export const types = {
   GET_LOCATION: 'GET_LOCATION',
   GET_LOCATION_SUCCESS: 'GET_LOCATION_SUCCESS',
   GET_LOCATION_FAILURE: 'GET_LOCATION_FAILURE',
+  GET_COUNTRIES: 'GET_COUNTRIES',
+  GET_COUNTRIES_SUCCESS: 'GET_COUNTRIES_SUCCESS',
+  GET_COUNTRIES_FAILURE: 'GET_COUNTRIES_FAILURE'
 };
 
 export default {
@@ -16,7 +20,12 @@ export default {
         const result = {
           country: response.data.country
         };
-        dispatch({type: types.GET_LOCATION_SUCCESS, payload: result});
+        const countriesResponse = await countries.getList();
+        const countriesResult = countriesResponse.data.results;
+        const userCountry = Object.values(countriesResult).find(item => item.name === result.country);
+        const userCurrency = userCountry ? userCountry.currencyId : null;
+        dispatch({type: types.GET_LOCATION_SUCCESS, payload: userCurrency});
+        await dispatch(currency.getRates(userCurrency));
       } catch (e) {
         if (e.response && e.response.status < 500) {
           dispatch({type: types.GET_LOCATION_FAILURE, error: e.response.data.error});
@@ -25,6 +34,6 @@ export default {
         }
       }
     };
-  }
+  },
 };
 

@@ -8,4 +8,8 @@ export default {
   getList: () => {
     return http.get(`api/v6/currencies`);
   },
+
+  getRates: () => {
+    return http.get(`api/v6/currencies`)
+  }
 };

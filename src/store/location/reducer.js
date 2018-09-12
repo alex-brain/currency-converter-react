@@ -3,7 +3,7 @@ import {types} from './actions';
 
 
 const initState = {
-  country: {},
+  currency: '',
   wait: false,
   errors: null,
 };
@@ -18,7 +18,7 @@ export default reducer(initState, {
   [types.GET_LOCATION]: (state) => {
     return {
       ...state,
-      country: {},
+      currency: '',
       wait: true
     };
   },
@@ -26,9 +26,7 @@ export default reducer(initState, {
   [types.GET_LOCATION_SUCCESS]: (state, action) => {
     return {
       ...state,
-      country : {
-        ...action.payload
-      },
+      currency : action.payload,
       wait: false
     };
   },
