@@ -25,7 +25,7 @@ export default {
         const userCountry = Object.values(countriesResult).find(item => item.name === result.country);
         const userCurrency = userCountry ? userCountry.currencyId : null;
         dispatch({type: types.GET_LOCATION_SUCCESS, payload: userCurrency});
-        await dispatch(currency.getRates(userCurrency));
+        await dispatch(currency.getList(userCurrency));
       } catch (e) {
         if (e.response && e.response.status < 500) {
           dispatch({type: types.GET_LOCATION_FAILURE, error: e.response.data.error});

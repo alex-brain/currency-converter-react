@@ -9,7 +9,7 @@ export default {
     return http.get(`api/v6/currencies`);
   },
 
-  getRates: () => {
-    return http.get(`api/v6/currencies`)
+  getRates: (userCurrency) => {
+    return http.get(`https://api.exchangeratesapi.io/latest?base=${userCurrency}`);
   }
 };

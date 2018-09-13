@@ -26,9 +26,9 @@ export default reducer(initState, {
   [types.GET_LIST_SUCCESS]: (state, action) => {
     return {
       ...state,
-      list : {
+      list : [
         ...action.payload
-      },
+      ],
       wait: false
     };
   },
@@ -40,6 +40,5 @@ export default reducer(initState, {
       error: action.error,
     };
   }
-
 });
 

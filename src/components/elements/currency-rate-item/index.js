@@ -6,23 +6,20 @@ import './styles.scss';
 class CurrencyRateItem extends Component {
 
   static propTypes = {
-    symbol: PropTypes.string,
     name: PropTypes.string,
     rate: PropTypes.number,
-    id: PropTypes.string,
     onClick: PropTypes.func
   };
 
   render() {
-    const { symbol, name, rate, onClick, id } = this.props;
+    const { name, rate, onClick } = this.props;
     return (
       <div className="CurrencyRateItem">
         <CurrencyRateListRow
           cells={[
-            symbol,
             name,
             rate,
-            <Button onClick={onClick(id)}>
+            <Button onClick={onClick(rate)}>
               Добавить в избранное
             </Button>
           ]}

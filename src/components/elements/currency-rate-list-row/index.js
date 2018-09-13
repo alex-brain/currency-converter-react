@@ -19,12 +19,9 @@ export default class CurrencyRateListRow extends Component {
     const { cells, theme } = this.props;
     return (
       <div className={cn(`CurrencyRateListRow`, themes('CurrencyRateListRow', theme))}>
-        <div className={cn(`CurrencyRateListRow__cell CurrencyRateListRow__cell_theme_sm`, themes('CurrencyRateListRow__cell', theme))}>{cells[0]}</div>
+        <div className={cn(`CurrencyRateListRow__cell CurrencyRateListRow__cell_theme_bg`, themes('CurrencyRateListRow__cell', theme))}>{cells[0]}</div>
         <div className={cn(`CurrencyRateListRow__cell CurrencyRateListRow__cell_theme_bg`, themes('CurrencyRateListRow__cell', theme))}>{cells[1]}</div>
-        <div className={cn(`CurrencyRateListRow__cell CurrencyRateListRow__cell_theme_sm`, themes('CurrencyRateListRow__cell', theme))}>{cells[2]}</div>
-        {cells[3] && (
-          <div className={cn(`CurrencyRateListRow__cell CurrencyRateListRow__cell_theme_md CurrencyRateListRow__cell_theme_center CurrencyRateListRow__cell_theme_hidden`, themes('CurrencyRateListRow__cell', theme))}>{cells[3]}</div>
-        )}
+        <div className={cn(`CurrencyRateListRow__cell CurrencyRateListRow__cell_theme_md CurrencyRateListRow__cell_theme_center`, themes('CurrencyRateListRow__cell', theme))}>{cells[2]}</div>
       </div>
     );
   }

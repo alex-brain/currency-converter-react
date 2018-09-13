@@ -15,25 +15,23 @@ class CurrencyRateList extends Component {
   renderItem = (item) => {
     return (
       <CurrencyRateItem
-        symbol={item.currencySymbol}
-        name={item.currencyName}
-        id={item.id}
-        rate={0}
+        name={item.name}
+        rate={item.rate}
         onClick={this.props.onClick}
       />
     );
   };
 
   render() {
-    const { items, getItemId } = this.props;
+    const { items } = this.props;
     return (
       <div className="CurrencyRateList">
         <div className="CurrencyRateList__header">
           <CurrencyRateListRow
             cells={[
               'Валюта',
-              'Название',
-              'Курс'
+              'Курс',
+              'Действие'
             ]}
           />
         </div>
@@ -41,7 +39,6 @@ class CurrencyRateList extends Component {
           <List
             items={items}
             renderItem={this.renderItem}
-            getItemId={getItemId}
           />
         </div>
       </div>

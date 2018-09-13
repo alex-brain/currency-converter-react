@@ -12,12 +12,6 @@
     }
   }
 
-  &:hover {
-    .CurrencyRateListRow__cell_theme_hidden {
-      display: flex;
-    }
-  }
-
   &__cell {
     padding: 10px;
     border-right: 1px solid #CDCDCD;
@@ -28,9 +22,6 @@
       &_center {
         display: flex;
         justify-content: center;
-      }
-      &_hidden {
-        display: none;
       }
       &_sm {
         width: 10%;
