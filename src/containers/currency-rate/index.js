@@ -21,8 +21,8 @@ class CurrencyRate extends Component {
     await this.props.dispatch(actions.location.getList());
   };
 
-  onAddFavouriteBtnClick = (item) => () => {
-    console.log('item', item)
+  onToggleFavouriteClick = (name) => () => {
+    this.props.dispatch(actions.currency.toggleFavourite(name));
   };
 
   render() {
@@ -32,7 +32,7 @@ class CurrencyRate extends Component {
         <UserCurrency currency={'RUB'}/>
         <CurrencyRateList
           items={currency.list}
-          onClick={this.onAddFavouriteBtnClick}
+          onToggleFavouriteClick={this.onToggleFavouriteClick}
         />
       </div>
     );

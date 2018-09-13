@@ -4,6 +4,7 @@ export const types = {
   GET_LIST: 'GET_LIST',
   GET_LIST_SUCCESS: 'GET_LIST_SUCCESS',
   GET_LIST_FAILURE: 'GET_LIST_FAILURE',
+  TOGGLE_FAVOURITE: 'TOGGLE_FAVOURITE'
 };
 
 export default {
@@ -15,7 +16,11 @@ export default {
         const result = response.data.rates;
         let currensyList = [];
         for(let item in result) {
-          currensyList.push({name: item, rate: result[item]});
+          currensyList.push({
+            name: item,
+            rate: result[item],
+            isFavourite: false
+          });
         }
         dispatch({type: types.GET_LIST_SUCCESS, payload: currensyList});
       } catch (e) {
@@ -25,6 +30,22 @@ export default {
           throw e;
         }
       }
+    };
+  },
+
+  toggleFavourite: (name) => {
+    return (dispatch, getState) => {
+      let currencyList = getState().currency.list;
+      currencyList = currencyList.map(item => {
+        if (name === item.name) {
+          return {
+            ...item,
+            isFavourite: !item.isFavourite
+          };
+        }
+        return item;
+      });
+      dispatch({type: types.TOGGLE_FAVOURITE, payload: currencyList,});
     };
   }
 };

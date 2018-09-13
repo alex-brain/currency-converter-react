@@ -39,6 +39,16 @@ export default reducer(initState, {
       wait: false,
       error: action.error,
     };
-  }
+  },
+
+  [types.TOGGLE_FAVOURITE]: (state, action) => {
+    return {
+      ...state,
+      list : [
+        ...action.payload
+      ],
+      wait: false
+    };
+  },
 });
 

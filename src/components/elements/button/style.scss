@@ -10,8 +10,6 @@
   text-decoration: none;
   letter-spacing: -0.01em;
   user-select: none;
-  color: #000000;
-  background-color: #84ffa6;
   border: 2px solid #000;
   border-radius: 5px;
   cursor: pointer;
@@ -28,5 +26,16 @@
 
   &_disabled, &:disabled {
     opacity: 0.65;
+  }
+
+  &_theme {
+    &_green {
+      color: #000000;
+      background-color: #84ffa6;
+    }
+    &_red {
+      color: #000000;
+      background-color: #ff5458;
+    }
   }
 }
