@@ -23,6 +23,9 @@
         display: flex;
         justify-content: center;
       }
+      &_header {
+        font-weight: bold;
+      }
       &_sm {
         width: 10%;
       }

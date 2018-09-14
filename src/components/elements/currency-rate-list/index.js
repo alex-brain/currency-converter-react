@@ -7,13 +7,14 @@ import './styles.scss';
 class CurrencyRateList extends Component {
 
   static propTypes = {
-    currency: PropTypes.object.isRequired,
+    currency: PropTypes.array.isRequired,
+    favourite: PropTypes.object.isRequired,
     getItemId: PropTypes.func,
     onToggleFavouriteClick: PropTypes.func
   };
 
   renderItem = (item) => {
-    const { favourite } = this.props.currency;
+    const { favourite } = this.props;
     return (
       <CurrencyRateItem
         name={item.name}
@@ -25,13 +26,13 @@ class CurrencyRateList extends Component {
   };
 
   getGeneralRates = () => {
-    const { favourite } = this.props.currency;
-    return this.props.currency.list.filter(item => !favourite[item.name]);
+    const { favourite, currency } = this.props;
+    return currency.filter(item => !favourite[item.name]);
   };
 
   getFavouriteRates = () => {
-    const { favourite } = this.props.currency;
-    return this.props.currency.list.filter(item => favourite[item.name]);
+    const { favourite, currency } = this.props;
+    return currency.filter(item => favourite[item.name]);
   };
 
   render() {
@@ -49,14 +50,13 @@ class CurrencyRateList extends Component {
                   'Курс',
                   'Действие'
                 ]}
+                theme={'header'}
               />
             </div>
-            <div className="CurrencyRateList__list">
-              <List
-                items={favouriteRates}
-                renderItem={this.renderItem}
-              />
-            </div>
+            <List
+              items={favouriteRates}
+              renderItem={this.renderItem}
+            />
           </Fragment>
         )}
         {!!generalRates.length && (
@@ -69,14 +69,13 @@ class CurrencyRateList extends Component {
                   'Курс',
                   'Действие'
                 ]}
+                theme={'header'}
               />
             </div>
-            <div className="CurrencyRateList__list">
-              <List
-                items={generalRates}
-                renderItem={this.renderItem}
-              />
-            </div>
+            <List
+              items={generalRates}
+              renderItem={this.renderItem}
+            />
           </Fragment>
         )}
       </div>

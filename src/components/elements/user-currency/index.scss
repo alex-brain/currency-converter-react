@@ -1,5 +1,11 @@
 .UserCurrency {
-  &_text-bold {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  &__label {
     font-weight: bold;
+  }
+  &__select {
+    margin-left: 20px;
   }
 }

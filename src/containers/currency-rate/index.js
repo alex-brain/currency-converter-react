@@ -27,7 +27,6 @@ class CurrencyRate extends Component {
   };
 
   onCurrencyChange = (data) => {
-    console.log('data', data);
     this.props.dispatch(actions.user.changeUserCurrency(data));
   };
 
@@ -41,7 +40,8 @@ class CurrencyRate extends Component {
           data={user.currency}
         />
         <CurrencyRateList
-          currency={currency}
+          currency={currency.list}
+          favourite={currency.favourite}
           onToggleFavouriteClick={this.onToggleFavouriteClick}
         />
       </div>

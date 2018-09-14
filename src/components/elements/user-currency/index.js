@@ -16,7 +16,9 @@ class UserCurrency extends Component {
     return (
       <div className="UserCurrency">
         <div className="UserCurrency__label">Ваша валюта:</div>
-        <Select options={options} data={data} onChange={onCurrencyChange} />
+        <div className="UserCurrency__select">
+          <Select options={options} data={data} onChange={onCurrencyChange} />
+        </div>
       </div>
     );
   }
