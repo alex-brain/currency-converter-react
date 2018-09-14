@@ -7,28 +7,31 @@ import './styles.scss';
 class CurrencyRateList extends Component {
 
   static propTypes = {
-    items: PropTypes.array.isRequired,
+    currency: PropTypes.object.isRequired,
     getItemId: PropTypes.func,
     onToggleFavouriteClick: PropTypes.func
   };
 
   renderItem = (item) => {
+    const { favourite } = this.props.currency;
     return (
       <CurrencyRateItem
         name={item.name}
         rate={item.rate}
-        isFavourite={item.isFavourite}
+        isFavourite={favourite[item.name]}
         onToggleFavouriteClick={this.props.onToggleFavouriteClick}
       />
     );
   };
 
   getGeneralRates = () => {
-    return this.props.items.filter(item => !item.isFavourite);
+    const { favourite } = this.props.currency;
+    return this.props.currency.list.filter(item => !favourite[item.name]);
   };
 
   getFavouriteRates = () => {
-    return this.props.items.filter(item => item.isFavourite);
+    const { favourite } = this.props.currency;
+    return this.props.currency.list.filter(item => favourite[item.name]);
   };
 
   render() {
@@ -50,7 +53,7 @@ class CurrencyRateList extends Component {
             </div>
             <div className="CurrencyRateList__list">
               <List
-                items={this.getFavouriteRates()}
+                items={favouriteRates}
                 renderItem={this.renderItem}
               />
             </div>
@@ -70,7 +73,7 @@ class CurrencyRateList extends Component {
             </div>
             <div className="CurrencyRateList__list">
               <List
-                items={this.getGeneralRates()}
+                items={generalRates}
                 renderItem={this.renderItem}
               />
             </div>

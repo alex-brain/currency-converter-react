@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Select } from '../index';
 import './index.scss';
 
 class UserCurrency extends Component {
 
   static propTypes = {
-    currency: PropTypes.string
+    options: PropTypes.array,
+    data: PropTypes.string,
+    onCurrencyChange: PropTypes.func
   };
 
   render() {
-    const { currency } = this.props;
+    const { options, data, onCurrencyChange } = this.props;
     return (
       <div className="UserCurrency">
-        Ваша валюта: <span className="UserCurrency_text-bold">{currency}</span>
+        <div className="UserCurrency__label">Ваша валюта:</div>
+        <Select options={options} data={data} onChange={onCurrencyChange} />
       </div>
     );
   }

@@ -4,6 +4,7 @@ import {types} from './actions';
 
 const initState = {
   list: [],
+  favourite: {},
   wait: false,
   errors: null,
 };
@@ -42,11 +43,16 @@ export default reducer(initState, {
   },
 
   [types.TOGGLE_FAVOURITE]: (state, action) => {
+    const favourite = state.favourite;
+    if (favourite[action.payload]) {
+      delete favourite[action.payload];
+    } else {
+      favourite[action.payload] = true;
+    }
+
     return {
       ...state,
-      list : [
-        ...action.payload
-      ],
+      favourite,
       wait: false
     };
   },

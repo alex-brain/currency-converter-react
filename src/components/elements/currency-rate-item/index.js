@@ -22,7 +22,7 @@ class CurrencyRateItem extends Component {
   };
 
   render() {
-    const { name, rate, isFavourite, onToggleFavouriteClick } = this.props;
+    const { name, rate } = this.props;
     const button = this.getButton();
     return (
       <div className="CurrencyRateItem">

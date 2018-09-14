@@ -15,7 +15,7 @@ export default reducer(initState, {
     };
   },
 
-  [types.GET_LOCATION]: (state) => {
+  [types.GET_USER_CURRENCY]: (state) => {
     return {
       ...state,
       currency: '',
@@ -23,7 +23,7 @@ export default reducer(initState, {
     };
   },
 
-  [types.GET_LOCATION_SUCCESS]: (state, action) => {
+  [types.GET_USER_CURRENCY_SUCCESS]: (state, action) => {
     return {
       ...state,
       currency : action.payload,
@@ -31,13 +31,21 @@ export default reducer(initState, {
     };
   },
 
-  [types.GET_LOCATION_FAILURE]: (state, action) => {
+  [types.GET_USER_CURRENCY_FAILURE]: (state, action) => {
     return {
       ...state,
       wait: false,
       error: action.error,
     };
-  }
+  },
+
+  [types.CHANGE_USER_CURRENCY]: (state, action) => {
+    return {
+      ...state,
+      currency : action.payload,
+      wait: false
+    };
+  },
 
 });
 

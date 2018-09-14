@@ -1,2 +1,2 @@
 export {default as currency} from './currency/reducer';
-export {default as location} from './location/reducer';
+export {default as user} from './user/reducer';

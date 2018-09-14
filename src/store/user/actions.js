@@ -2,18 +2,16 @@ import { location, countries } from '../../api';
 import { currency } from '../actions';
 
 export const types = {
-  GET_LOCATION: 'GET_LOCATION',
-  GET_LOCATION_SUCCESS: 'GET_LOCATION_SUCCESS',
-  GET_LOCATION_FAILURE: 'GET_LOCATION_FAILURE',
-  GET_COUNTRIES: 'GET_COUNTRIES',
-  GET_COUNTRIES_SUCCESS: 'GET_COUNTRIES_SUCCESS',
-  GET_COUNTRIES_FAILURE: 'GET_COUNTRIES_FAILURE'
+  GET_USER_CURRENCY: 'GET_USER_CURRENCY',
+  GET_USER_CURRENCY_SUCCESS: 'GET_USER_CURRENCY_SUCCESS',
+  GET_USER_CURRENCY_FAILURE: 'GET_USER_CURRENCY_FAILURE',
+  CHANGE_USER_CURRENCY: 'CHANGE_USER_CURRENCY'
 };
 
 export default {
-  getList: () => {
+  getUserCurrency: () => {
     return async (dispatch) => {
-      dispatch({type: types.GET_LOCATION});
+      dispatch({type: types.GET_USER_CURRENCY});
 
       try {
         const response = await location.getLocation();
@@ -23,16 +21,23 @@ export default {
         const countriesResponse = await countries.getList();
         const countriesResult = countriesResponse.data.results;
         const userCountry = Object.values(countriesResult).find(item => item.name === result.country);
-        const userCurrency = userCountry ? userCountry.currencyId : null;
-        dispatch({type: types.GET_LOCATION_SUCCESS, payload: userCurrency});
+        const userCurrency = userCountry ? userCountry.currencyId : 'RUB';
+        dispatch({type: types.GET_USER_CURRENCY_SUCCESS, payload: userCurrency});
         await dispatch(currency.getList(userCurrency));
       } catch (e) {
         if (e.response && e.response.status < 500) {
-          dispatch({type: types.GET_LOCATION_FAILURE, error: e.response.data.error});
+          dispatch({type: types.GET_USER_CURRENCY_FAILURE, error: e.response.data.error});
         } else {
           throw e;
         }
       }
+    };
+  },
+
+  changeUserCurrency: (data) => {
+    return async (dispatch) => {
+      dispatch({type: types.CHANGE_USER_CURRENCY, payload: data,});
+      await dispatch(currency.getList(data));
     };
   },
 };

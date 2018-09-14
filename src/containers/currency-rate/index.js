@@ -10,6 +10,7 @@ class CurrencyRate extends Component {
 
   static propTypes = {
     currency: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
     history: PropTypes.object,
   };
 
@@ -18,20 +19,29 @@ class CurrencyRate extends Component {
   };
 
   async init() {
-    await this.props.dispatch(actions.location.getList());
+    await this.props.dispatch(actions.user.getUserCurrency());
   };
 
   onToggleFavouriteClick = (name) => () => {
     this.props.dispatch(actions.currency.toggleFavourite(name));
   };
 
+  onCurrencyChange = (data) => {
+    console.log('data', data);
+    this.props.dispatch(actions.user.changeUserCurrency(data));
+  };
+
   render() {
-    const { currency } = this.props;
+    const { currency, user } = this.props;
     return (
       <div className="CurrencyRate">
-        <UserCurrency currency={'RUB'}/>
+        <UserCurrency
+          onCurrencyChange={this.onCurrencyChange}
+          options={currency.list}
+          data={user.currency}
+        />
         <CurrencyRateList
-          items={currency.list}
+          currency={currency}
           onToggleFavouriteClick={this.onToggleFavouriteClick}
         />
       </div>
@@ -41,5 +51,5 @@ class CurrencyRate extends Component {
 
 export default withRouter(connect(state => ({
   currency: state.currency,
-  location: state.location,
+  user: state.user,
 }))(CurrencyRate))
