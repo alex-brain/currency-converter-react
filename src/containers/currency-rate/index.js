@@ -14,14 +14,6 @@ class CurrencyRate extends Component {
     history: PropTypes.object,
   };
 
-  componentDidMount() {
-    this.init();
-  };
-
-  async init() {
-    await this.props.dispatch(actions.user.getUserCurrency());
-  };
-
   onToggleFavouriteClick = (name) => () => {
     this.props.dispatch(actions.currency.toggleFavourite(name));
   };

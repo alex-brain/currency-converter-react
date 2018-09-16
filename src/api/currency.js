@@ -1,15 +1,12 @@
 import http from '../utils/http';
 
 export default {
-  /**
-   * Getting list of curriencies
-   * @returns {Promise}
-   */
-  getList: () => {
-    return http.get(`api/v6/currencies`);
-  },
 
   getRates: (userCurrency) => {
     return http.get(`https://api.exchangeratesapi.io/latest?base=${userCurrency}`);
+  },
+
+  getRate: (firstCurrency, secondCurrency) => {
+    return http.get(`https://api.exchangeratesapi.io/latest?base=${firstCurrency}&symbols=${secondCurrency}`);
   }
 };

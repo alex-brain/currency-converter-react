@@ -17,7 +17,11 @@ class UserCurrency extends Component {
       <div className="UserCurrency">
         <div className="UserCurrency__label">Ваша валюта:</div>
         <div className="UserCurrency__select">
-          <Select options={options} data={data} onChange={onCurrencyChange} />
+          <Select
+            options={[{name: data}, ...options]}
+            data={data}
+            onChange={onCurrencyChange}
+          />
         </div>
       </div>
     );

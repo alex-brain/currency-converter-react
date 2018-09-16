@@ -1,6 +1,6 @@
 import currency from '../../api/currency';
 
-export const types = {
+export const currencyTypes = {
   GET_LIST: 'GET_LIST',
   GET_LIST_SUCCESS: 'GET_LIST_SUCCESS',
   GET_LIST_FAILURE: 'GET_LIST_FAILURE',
@@ -10,7 +10,7 @@ export const types = {
 export default {
   getList: (userCurrency) => {
     return async (dispatch) => {
-      dispatch({type: types.GET_LIST});
+      dispatch({type: currencyTypes.GET_LIST});
       try {
         const response = await currency.getRates(userCurrency);
         const result = response.data.rates;
@@ -21,10 +21,10 @@ export default {
             rate: result[item],
           });
         }
-        dispatch({type: types.GET_LIST_SUCCESS, payload: currensyList});
+        dispatch({type: currencyTypes.GET_LIST_SUCCESS, payload: currensyList});
       } catch (e) {
         if (e.response && e.response.status < 500) {
-          dispatch({type: types.GET_LIST_FAILURE, error: e.response.data.error});
+          dispatch({type: currencyTypes.GET_LIST_FAILURE, error: e.response.data.error});
         } else {
           throw e;
         }
@@ -34,7 +34,7 @@ export default {
 
   toggleFavourite: (name) => {
     return (dispatch) => {
-      dispatch({type: types.TOGGLE_FAVOURITE, payload: name,});
+      dispatch({type: currencyTypes.TOGGLE_FAVOURITE, payload: name,});
     };
   }
 };

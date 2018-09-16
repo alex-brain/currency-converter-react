@@ -1,0 +1,16 @@
+.ConverterForm {
+  display: flex;
+  justify-content: center;
+
+  &Input {
+    width: 150px;
+    margin-right: 30px;
+
+    &__errors {
+      font-size: 12px;
+      padding: 5px;
+      color: red;
+      box-sizing: border-box;
+    }
+  }
+}

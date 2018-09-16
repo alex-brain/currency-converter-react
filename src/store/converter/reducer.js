@@ -1,43 +1,41 @@
 import reducer from '../../utils/reducer';
-import {userTypes} from './actions';
+import {types} from './actions';
 
 
 const initState = {
-  currency: '',
+  rate: 0,
   wait: false,
   errors: null,
 };
 
 export default reducer(initState, {
-  [userTypes.INIT]: (state) => {
+  [types.INIT]: (state) => {
     return {
       ...state,
     };
   },
 
-  [userTypes.GET_USER_CURRENCY]: (state) => {
+  [types.GET_RATE]: (state) => {
     return {
       ...state,
-      currency: '',
       wait: true
     };
   },
 
-  [userTypes.GET_USER_CURRENCY_SUCCESS]: (state, action) => {
+  [types.GET_RATE_SUCCESS]: (state, action) => {
     return {
       ...state,
-      currency : action.payload,
+      rate: action.payload,
       wait: false
     };
   },
 
-  [userTypes.GET_USER_CURRENCY_FAILURE]: (state, action) => {
+  [types.GET_RATE_FAILURE]: (state, action) => {
     return {
       ...state,
       wait: false,
       error: action.error,
     };
-  }
-
+  },
 });
 

@@ -1,5 +1,5 @@
 import reducer from '../../utils/reducer';
-import {types} from './actions';
+import {currencyTypes} from './actions';
 
 
 const initState = {
@@ -10,13 +10,13 @@ const initState = {
 };
 
 export default reducer(initState, {
-  [types.INIT]: (state) => {
+  [currencyTypes.INIT]: (state) => {
     return {
       ...state,
     };
   },
 
-  [types.GET_LIST]: (state) => {
+  [currencyTypes.GET_LIST]: (state) => {
     return {
       ...state,
       list: [],
@@ -24,7 +24,7 @@ export default reducer(initState, {
     };
   },
 
-  [types.GET_LIST_SUCCESS]: (state, action) => {
+  [currencyTypes.GET_LIST_SUCCESS]: (state, action) => {
     return {
       ...state,
       list : [
@@ -34,7 +34,7 @@ export default reducer(initState, {
     };
   },
 
-  [types.GET_LIST_FAILURE]: (state, action) => {
+  [currencyTypes.GET_LIST_FAILURE]: (state, action) => {
     return {
       ...state,
       wait: false,
@@ -42,7 +42,7 @@ export default reducer(initState, {
     };
   },
 
-  [types.TOGGLE_FAVOURITE]: (state, action) => {
+  [currencyTypes.TOGGLE_FAVOURITE]: (state, action) => {
     const favourite = state.favourite;
     if (favourite[action.payload]) {
       delete favourite[action.payload];

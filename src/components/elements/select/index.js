@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import {themes} from '../../../utils';
+import './style.scss';
 
 export default class Select extends Component {
 
@@ -9,6 +10,7 @@ export default class Select extends Component {
     theme: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     options: PropTypes.arrayOf(PropTypes.object),
     data: PropTypes.string,
+    label: PropTypes.string,
     onChange: PropTypes.func,
     disabled: PropTypes.bool
   };
@@ -24,17 +26,19 @@ export default class Select extends Component {
   };
 
   render() {
-    const { theme, options, data, disabled } = this.props;
+    const { theme, options, data, label, disabled } = this.props;
     return (
-      <div className={cn('Select__container', themes('Select', theme))}>
+      <div className={cn('Select', themes('Select', theme))}>
         <select
           onChange={this.onChange}
-          className="Select"
+          className="Select__select"
           value={data}
           disabled={disabled}>
-          <option value={data} className="Select__option">
-            {data}
-          </option>
+          {label && (
+            <option value={''} className="Select__option" disabled>
+              {label}
+            </option>
+          )}
           {
             options && options.map((item, index) => {
               return (
