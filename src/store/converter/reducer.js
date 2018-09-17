@@ -3,7 +3,7 @@ import {types} from './actions';
 
 
 const initState = {
-  rate: 0,
+  rate: null,
   wait: false,
   errors: null,
 };
@@ -18,6 +18,7 @@ export default reducer(initState, {
   [types.GET_RATE]: (state) => {
     return {
       ...state,
+      rate: null,
       wait: true
     };
   },

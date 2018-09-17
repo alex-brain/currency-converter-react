@@ -7,6 +7,7 @@ class Converter extends Component {
 
   static propTypes = {
     data: PropTypes.object,
+    rate: PropTypes.number,
     onCurrencyChange: PropTypes.func,
     onSubmit: PropTypes.func,
     options: PropTypes.array,
@@ -14,7 +15,7 @@ class Converter extends Component {
   };
 
   render() {
-    const { data, options, errors, onCurrencyChange, onSubmit } = this.props;
+    const { data, options, errors, onCurrencyChange, onSubmit, rate } = this.props;
     return (
       <div className="Converter">
         <div className="Converter__form">
@@ -26,9 +27,11 @@ class Converter extends Component {
             onCurrencyChange={onCurrencyChange}
           />
         </div>
-        <div className="Converter__result">
-          Результат конвертирования
-        </div>
+        {rate !== null && (
+          <div className="Converter__result">
+            Результат: {rate}
+          </div>
+        )}
       </div>
     );
   }

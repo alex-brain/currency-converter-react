@@ -24,11 +24,13 @@ class CurrencyConverter extends Component {
 
   render() {
     const { data, options, errors } = this.props.converterForm;
+    const { rate } = this.props.converter;
 
     return (
       <div className="CurrencyConverter">
         <Converter
           data={data}
+          rate={rate}
           options={options}
           errors={errors}
           onCurrencyChange={this.onCurrencyChange}

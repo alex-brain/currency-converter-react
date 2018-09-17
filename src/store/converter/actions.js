@@ -10,11 +10,11 @@ export default {
   getRate: () => {
     return async (dispatch, getState) => {
       dispatch({type: types.GET_RATE});
-      const { data } = getState().converterForm;
+      const { firstCurrency, secondCurrency, amount } = getState().converterForm.data;
       try {
-        const response = await currency.getRate(data.firstCurrency, data.secondCurrency);
-        const result = response.data.rates;
-        dispatch({type: types.GET_RATE_SUCCESS, payload: {}});
+        const response = await currency.getRate(firstCurrency, secondCurrency);
+        const result = response.data.rates[secondCurrency] * amount;
+        dispatch({type: types.GET_RATE_SUCCESS, payload: result});
       } catch (e) {
         if (e.response && e.response.status < 500) {
           dispatch({type: types.GET_RATE_FAILURE, error: e.response.data.error});
