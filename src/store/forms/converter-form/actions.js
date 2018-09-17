@@ -18,8 +18,16 @@ export default {
       try {
         const numberRegExp = /^\d*\.?\d*$/g;
         if (amount && numberRegExp.test(amount) && firstCurrency && secondCurrency) {
-          dispatch({type: types.SUBMIT_SUCCESS});
-          await dispatch(converter.getRate(firstCurrency, secondCurrency));
+          if (firstCurrency === secondCurrency) {
+            const errors = {
+              firstCurrency: 'Нужно выбрать разную валюту',
+              secondCurrency: 'Нужно выбрать разную валюту'
+            };
+            dispatch({type: types.SUBMIT_FAILURE, payload: errors});
+          } else {
+            dispatch({type: types.SUBMIT_SUCCESS});
+            await dispatch(converter.getRate(firstCurrency, secondCurrency));
+          }
         } else {
           const errors = {};
           if (!firstCurrency) {

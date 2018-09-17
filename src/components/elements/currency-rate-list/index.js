@@ -10,7 +10,8 @@ class CurrencyRateList extends Component {
     currency: PropTypes.array.isRequired,
     favourite: PropTypes.object.isRequired,
     getItemId: PropTypes.func,
-    onToggleFavouriteClick: PropTypes.func
+    onToggleFavouriteClick: PropTypes.func,
+    wait: PropTypes.bool
   };
 
   renderItem = (item) => {

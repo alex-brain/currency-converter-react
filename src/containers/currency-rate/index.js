@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter, NavLink } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import * as actions from "../../store/actions";
-import { UserCurrency } from '../../components/elements';
+import { UserCurrency, Preloader } from '../../components/elements';
 import { HeaderContainer } from '../index';
 import CurrencyRateList from "../../components/elements/currency-rate-list/index";
 
@@ -28,16 +28,24 @@ class CurrencyRate extends Component {
     return (
       <div className="CurrencyRate">
         <HeaderContainer/>
-        <UserCurrency
-          onCurrencyChange={this.onCurrencyChange}
-          options={currency.list}
-          data={user.currency}
-        />
-        <CurrencyRateList
-          currency={currency.list}
-          favourite={currency.favourite}
-          onToggleFavouriteClick={this.onToggleFavouriteClick}
-        />
+        {user.wait ? (
+          <Preloader/>
+        ) : (
+          <UserCurrency
+            onCurrencyChange={this.onCurrencyChange}
+            options={currency.list}
+            data={user.currency}
+          />
+        )}
+        {currency.wait ? (
+          <Preloader/>
+        ) : (
+          <CurrencyRateList
+            currency={currency.list}
+            favourite={currency.favourite}
+            onToggleFavouriteClick={this.onToggleFavouriteClick}
+          />
+        )}
       </div>
     );
   }

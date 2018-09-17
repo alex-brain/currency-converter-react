@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ConverterForm } from '../index';
+import { ConverterForm, Preloader } from '../index';
 import './style.scss';
 
 class Converter extends Component {
@@ -11,11 +11,12 @@ class Converter extends Component {
     onCurrencyChange: PropTypes.func,
     onSubmit: PropTypes.func,
     options: PropTypes.array,
-    errors: PropTypes.object
+    errors: PropTypes.object,
+    wait: PropTypes.bool
   };
 
   render() {
-    const { data, options, errors, onCurrencyChange, onSubmit, rate } = this.props;
+    const { data, options, errors, onCurrencyChange, onSubmit, rate, wait } = this.props;
     return (
       <div className="Converter">
         <div className="Converter__form">
@@ -27,11 +28,16 @@ class Converter extends Component {
             onCurrencyChange={onCurrencyChange}
           />
         </div>
-        {rate !== null && (
-          <div className="Converter__result">
-            Результат: {rate}
-          </div>
+        {wait ? (
+          <Preloader/>
+        ) : (
+          rate !== null && (
+            <div className="Converter__result">
+              Результат: {rate}
+            </div>
+          )
         )}
+
       </div>
     );
   }

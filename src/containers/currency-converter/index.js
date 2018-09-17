@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import * as actions from "../../store/actions";
-import { Converter, Menu } from '../../components/elements';
+import { Converter } from '../../components/elements';
 import { HeaderContainer } from '../index';
 
 class CurrencyConverter extends Component {
@@ -11,7 +11,6 @@ class CurrencyConverter extends Component {
   static propTypes = {
     converterForm: PropTypes.object.isRequired,
     converter: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired,
     history: PropTypes.object,
   };
 
@@ -25,7 +24,7 @@ class CurrencyConverter extends Component {
 
   render() {
     const { data, options, errors } = this.props.converterForm;
-    const { rate } = this.props.converter;
+    const { rate, wait } = this.props.converter;
 
     return (
       <div className="CurrencyConverter">
@@ -35,6 +34,7 @@ class CurrencyConverter extends Component {
           rate={rate}
           options={options}
           errors={errors}
+          wait={wait}
           onCurrencyChange={this.onCurrencyChange}
           onSubmit={this.onSubmit}
         />
@@ -46,5 +46,4 @@ class CurrencyConverter extends Component {
 export default withRouter(connect(state => ({
   converterForm: state.converterForm,
   converter: state.converter,
-  user: state.user,
 }))(CurrencyConverter))

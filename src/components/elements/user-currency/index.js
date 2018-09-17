@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Select } from '../index';
-import './index.scss';
+import './styles.scss';
 
 class UserCurrency extends Component {
 
