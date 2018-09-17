@@ -1,5 +1,4 @@
 export {default as UserCurrency} from './user-currency';
-export {default as Header} from './header';
 export {default as Button} from './button';
 export {default as Select} from './select';
 export {default as Input} from './input';
