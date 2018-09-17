@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {Route, Router, Switch} from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import * as actions from "../../store/actions";
-import {LayoutPage} from '../../components/layouts';
+import { LayoutPage } from '../../components/layouts';
 import { CurrencyRate } from '../index';
 import { CurrencyConverter } from '../index';
 

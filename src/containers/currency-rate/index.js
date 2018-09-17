@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from "react-router-dom";
+import { withRouter, NavLink } from "react-router-dom";
 import * as actions from "../../store/actions";
 import { UserCurrency } from '../../components/elements';
+import { HeaderContainer } from '../index';
 import CurrencyRateList from "../../components/elements/currency-rate-list/index";
 
 class CurrencyRate extends Component {
@@ -26,6 +27,7 @@ class CurrencyRate extends Component {
     const { currency, user } = this.props;
     return (
       <div className="CurrencyRate">
+        <HeaderContainer/>
         <UserCurrency
           onCurrencyChange={this.onCurrencyChange}
           options={currency.list}
