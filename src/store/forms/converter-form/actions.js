@@ -54,20 +54,3 @@ export default {
     };
   }
 };
-/*
- changeValues: (data) => {
- return dispatch => {
- const numberRegExp = /^\d*\.?\d*$/g;
- //const isAmountFieldNumber = data.amount.match(numberRegExp);
- const isAmountFieldNumber = numberRegExp.test(data.amount);
- console.log('data.amount', data.amount);
- console.log('isAmountFieldNumber', isAmountFieldNumber);
- if (!data.amount) {
- dispatch({type: types.CHANGE_FAILURE, payload: {amount: 'Разрешается вводить только цифры!'}});
- } else {
- dispatch({type: types.CHANGE, payload: data});
- }
-dispatch({type: types.CHANGE, payload: data});
-}
-},
- */
